@@ -1,6 +1,6 @@
-#This project provides a solid foundation for building a podcast booking system.
+This project provides a solid foundation for building a podcast booking system.
 
-##Key Features Implemented:
+Key Features Implemented:
 CRUD Operations for appointments
 
 User Authentication with Token-based auth
