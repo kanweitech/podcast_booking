@@ -15,8 +15,35 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework.authtoken.views import obtain_auth_token
+from appointments.views import UserAppointmentViewSet, AdminAppointmentViewSet
+
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path('admin/', admin.site.urls),
+    path('api/auth/', obtain_auth_token, name='api-token-auth'),
+   
+    
+    path('api/appointments/', UserAppointmentViewSet.as_view({
+        'get': 'list', 
+        'post': 'create'
+    })),
+    path('api/appointments/<int:pk>/', UserAppointmentViewSet.as_view({
+        'get': 'retrieve',
+        'put': 'update',
+        'delete': 'destroy'
+    })),
+    
+    path('api/admin/appointments/', AdminAppointmentViewSet.as_view({
+        'get': 'list', 
+        'post': 'create'
+    })),
+    path('api/admin/appointments/<int:pk>/', AdminAppointmentViewSet.as_view({
+        'get': 'retrieve',
+        'put': 'update',
+        'delete': 'destroy'
+    })),
 ]
+
+
